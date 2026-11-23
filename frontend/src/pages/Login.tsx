@@ -4,14 +4,17 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { Logo, Spinner } from '../components/ui'
 import { useAuth } from '../lib/auth'
 
-const DEMO = import.meta.env.VITE_DEMO_LOGIN === 'true'
+// Optional public-demo convenience: pre-fill the login form from build-time env vars.
+const DEMO_EMAIL = (import.meta.env.VITE_DEMO_EMAIL as string | undefined) ?? ''
+const DEMO_PASSWORD = (import.meta.env.VITE_DEMO_PASSWORD as string | undefined) ?? ''
+const DEMO = import.meta.env.VITE_DEMO_LOGIN === 'true' && !!DEMO_EMAIL && !!DEMO_PASSWORD
 
 export default function Login() {
   const { admin, login } = useAuth()
   const navigate = useNavigate()
   const from = (useLocation().state as { from?: string } | null)?.from ?? '/admin'
-  const [email, setEmail] = useState(DEMO ? 'admin@example.com' : '')
-  const [password, setPassword] = useState(DEMO ? 'admin12345' : '')
+  const [email, setEmail] = useState(DEMO ? DEMO_EMAIL : '')
+  const [password, setPassword] = useState(DEMO ? DEMO_PASSWORD : '')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 

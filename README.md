@@ -213,7 +213,8 @@ cd frontend && npm run build     # type-check + production build
 3. **API on Render:** *New → Blueprint* → pick this repo (it reads [`render.yaml`](render.yaml)). Fill in
    `DATABASE_URL`, `SIGNING_KEY`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and `CORS_ORIGINS` (your Vercel URL).
 4. **Frontend on Vercel:** *Add New → Project* → this repo, **Root Directory = `frontend`**. Add the env var
-   `VITE_API_URL=https://<your-render-service>.onrender.com` (and `VITE_DEMO_LOGIN=true` for a public demo).
+   `VITE_API_URL=https://<your-render-service>.onrender.com`. For a public demo, also set `VITE_DEMO_LOGIN=true`,
+   `VITE_DEMO_EMAIL` and `VITE_DEMO_PASSWORD` to pre-fill the admin login.
 5. Open the Vercel URL. The first request after the API has been idle takes ~30-50 s while Render wakes it up.
    Signature checks keep working on the device during that time.
 
