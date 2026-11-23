@@ -5,7 +5,7 @@ import { Link, NavLink, Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
 import { Logo, Spinner, ThemeToggle } from './ui'
 
-export const GITHUB_URL = 'https://github.com/SAIGANESHABOTULA/secure-qrid'
+export const GITHUB_URL = 'https://github.com/SAIGANESHABOTULA/student-QR-id'
 
 export function PublicLayout() {
   const { admin } = useAuth()

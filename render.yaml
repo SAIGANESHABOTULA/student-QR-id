@@ -2,7 +2,7 @@
 # Deploys the FastAPI backend on Render's free plan.
 services:
   - type: web
-    name: secure-id-api
+    name: student-qr-id-api
     runtime: python
     plan: free
     rootDir: backend
@@ -22,7 +22,7 @@ services:
         sync: false
       - key: ADMIN_PASSWORD
         sync: false
-      - key: CORS_ORIGINS # your Vercel URL, e.g. https://secure-id.vercel.app
+      - key: CORS_ORIGINS # your Vercel URL, e.g. https://student-qr-id.vercel.app
         sync: false
       - key: INSTITUTION_NAME
         value: SVNIT Surat

@@ -162,8 +162,8 @@ about 330 characters, which keeps the QR small enough to scan quickly.
 **Prerequisites:** Python 3.12+, Node.js 20+
 
 ```bash
-git clone https://github.com/SAIGANESHABOTULA/secure-qrid.git
-cd secure-qrid
+git clone https://github.com/SAIGANESHABOTULA/student-QR-id.git
+cd student-QR-id
 ```
 
 **Backend** (http://127.0.0.1:8000, docs at `/docs`)
@@ -247,7 +247,7 @@ Full interactive docs: `/docs` (Swagger UI).
 ## Project structure
 
 ```text
-secure-qrid/
+student-QR-id/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py          # FastAPI app, CORS, startup
