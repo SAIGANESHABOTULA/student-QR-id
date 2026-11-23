@@ -9,7 +9,7 @@
 Issue an ID card, print it, and let any phone verify it in under a second, even offline.
 Forged, edited, expired, revoked and replaced cards are all caught.
 
-[**Live demo**](https://YOUR-APP.vercel.app) · [**API docs**](https://YOUR-API.onrender.com/docs) · [Report a bug](../../issues)
+[**Live demo**](https://student-qr-id.vercel.app) · [**API docs**](https://student-qr-id-api.onrender.com/docs) · [Report a bug](../../issues)
 
 ![React](https://img.shields.io/badge/React_19-20232a?logo=react&logoColor=61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white)
@@ -21,6 +21,10 @@ Forged, edited, expired, revoked and replaced cards are all caught.
 <img src="docs/screenshots/landing.png" alt="SecureID landing page" width="900" />
 
 </div>
+
+> **Try it:** open the [live demo](https://student-qr-id.vercel.app/verify) and tap a sample card, or open the
+> [admin console](https://student-qr-id.vercel.app/login) (demo login is pre-filled).
+> Hosted on free tiers: the first load after a quiet period can take ~30-50 s while the API wakes up.
 
 ---
 
