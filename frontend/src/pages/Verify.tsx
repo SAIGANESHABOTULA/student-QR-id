@@ -185,7 +185,7 @@ function ResultPanel({ outcome, onReset }: { outcome: Outcome; onReset: () => vo
     ? {
         id: s?.id ?? c!.sid, name: s?.name ?? c!.name, roll: s?.roll_no ?? c!.roll, dept: s?.department ?? c!.dept,
         prog: s?.program ?? c!.prog, year: s?.year ?? c!.yr, blood: s?.blood_group, until: s?.valid_until ?? c!.exp,
-        hasPhoto: s ? s.has_photo : true, photoVersion: s?.photo_version ?? 0,
+        hasPhoto: s?.has_photo ?? false, photoVersion: s?.photo_version ?? 0,
       }
     : null
 
