@@ -1,0 +1,25 @@
+# Secrets - never commit keys or env files
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+backend/.keys/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.db
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

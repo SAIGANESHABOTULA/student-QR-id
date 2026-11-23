@@ -1,0 +1,30 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# Deploys the FastAPI backend on Render's free plan.
+services:
+  - type: web
+    name: secure-id-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips='*'
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: DATABASE_URL # Neon connection string (free Postgres)
+        sync: false
+      - key: SIGNING_KEY # output of: python -m app.keygen
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: CORS_ORIGINS # your Vercel URL, e.g. https://secure-id.vercel.app
+        sync: false
+      - key: INSTITUTION_NAME
+        value: SVNIT Surat
+      - key: SEED_DEMO
+        value: "true"

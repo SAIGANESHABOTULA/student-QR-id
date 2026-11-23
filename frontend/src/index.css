@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-pop: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-scan: scan 2.2s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pop {
+    0% { opacity: 0; transform: scale(0.6); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes scan {
+    0%, 100% { top: 6%; }
+    50% { top: 90%; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-10px) rotate(-2deg); }
+  }
+}
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  h1, h2, h3, h4 { @apply font-display tracking-tight; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-brand-500; }
+}
+
+@utility card {
+  @apply rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition
+    disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.98];
+}
+@utility btn-primary {
+  @apply btn bg-brand-600 text-white shadow-sm shadow-brand-600/30 hover:bg-brand-700;
+}
+@utility btn-secondary {
+  @apply btn border border-slate-200 bg-white text-slate-700 hover:bg-slate-50
+    dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700;
+}
+@utility btn-ghost {
+  @apply btn text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800;
+}
+@utility btn-danger {
+  @apply btn bg-red-600 text-white hover:bg-red-700;
+}
+@utility input {
+  @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none transition
+    placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15
+    dark:border-slate-700 dark:bg-slate-900 dark:placeholder:text-slate-500;
+}
+@utility label {
+  @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400;
+}
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(99 102 241 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(99 102 241 / 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@media print {
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area { position: absolute; inset: 0; margin: auto; }
+}
