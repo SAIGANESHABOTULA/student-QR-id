@@ -151,3 +151,16 @@ def test_demo_credentials_results(client, monkeypatch):
         assert _verify(client, token)["result"] == kind, kind
     monkeypatch.setattr(get_settings(), "seed_demo", True)
     assert len(client.get("/api/demo-credentials").json()) == 5
+
+
+def test_admin_password_follows_env(client, monkeypatch):
+    from app.config import get_settings
+    from app.db import SessionLocal
+    from app.seed import ensure_admin
+
+    monkeypatch.setattr(get_settings(), "admin_password", "rotated-pass-123")
+    with SessionLocal() as db:
+        ensure_admin(db)
+    with TestClient(app) as c:
+        assert c.post("/api/auth/login", json={"email": "admin@test.dev", "password": "secret-pass"}).status_code == 401
+        assert c.post("/api/auth/login", json={"email": "admin@test.dev", "password": "rotated-pass-123"}).status_code == 200

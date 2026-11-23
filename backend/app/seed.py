@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from .config import get_settings
 from .models import Admin, ScanLog, Student
-from .security import hash_password
+from .security import hash_password, verify_password
 from .services import MESSAGES
 
 DEPARTMENTS = {
@@ -27,10 +27,15 @@ BLOOD = ["A+", "B+", "O+", "AB+", "A-", "O-", "B-"]
 
 
 def ensure_admin(db: Session) -> None:
+    """Create the admin from env vars, and keep its password in sync with ADMIN_PASSWORD."""
     s = get_settings()
     email = s.admin_email.lower()
-    if db.scalar(select(Admin).where(Admin.email == email)) is None:
+    admin = db.scalar(select(Admin).where(Admin.email == email))
+    if admin is None:
         db.add(Admin(email=email, name="Administrator", password_hash=hash_password(s.admin_password)))
+        db.commit()
+    elif not verify_password(s.admin_password, admin.password_hash):
+        admin.password_hash = hash_password(s.admin_password)
         db.commit()
 
 
